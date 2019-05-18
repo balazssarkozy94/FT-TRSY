@@ -37,11 +37,6 @@ static void GPIO_Config(void)
   /* Configure LED outputs */
   GPIO_Init(GPIOC, GPIO_Pin_0 | GPIO_Pin_1, GPIO_Mode_Out_PP_High_Fast);
   
-  /* Configure LCD pins */
-//  GPIO_Init(GPIOD, GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7, GPIO_Mode_Out_PP_High_Fast);
-//  GPIO_Init(GPIOC, GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4, GPIO_Mode_Out_PP_High_Fast);
-//  GPIO_Init(GPIOD, GPIO_Pin_1, GPIO_Mode_Out_PP_High_Fast);
-  
   /* Configure RFM22B pins */
   ///???????????? SPI??????????????
   GPIO_Init(GPIOB, GPIO_Pin_2 | GPIO_Pin_4, GPIO_Mode_Out_PP_High_Fast);
@@ -56,6 +51,9 @@ static void GPIO_Config(void)
 
   /* Configure Motor driver pin */
   GPIO_Init(GPIOD, GPIO_Pin_4, GPIO_Mode_Out_PP_High_Fast);
+  
+  /* Configure Encoder pin */
+  GPIO_Init(GPIOD, GPIO_Pin_1, GPIO_Mode_In_PU_No_IT);
 }
 
 static void ITC_Config(void)
@@ -157,9 +155,14 @@ uint8_t TEST_DELETE_ME;
 uint16_t ADC_BUFFER;
 float v_lsb;
 char buffer [16];
-
+uint32_t last_encoder, new_encoder;
+uint8_t delete_me;
+uint8_t BUFFER_FOR_ENC_TEST[10];
+  
 int main( void )
 {
+
+  
   uint8_t data[RF22_MAX_MESSAGE_LEN] = {"Hello World!"};
   uint8_t len = sizeof(data);
         
@@ -187,15 +190,29 @@ int main( void )
   }
   
   Delay(100);
-  
+  new_encoder = 0;
+  last_encoder = 0;
   while(1)
   {
+    
+    for(delete_me = 0; delete_me < 10; delete_me++)
+    {
+      
     Delay(500);
     GPIO_ToggleBits(GPIOC, GPIO_Pin_0);
     GPIO_ToggleBits(GPIOC, GPIO_Pin_1);
     readADC_VBAT();
     readADC_VREF();
-    TEST_DELETE_ME = TIM3_GetCounter(); //encoder
+    
+    new_encoder = TIM3_GetCounter();
+    TEST_DELETE_ME = new_encoder - last_encoder; //encoder
+    
+    BUFFER_FOR_ENC_TEST[delete_me] = TEST_DELETE_ME;
+    
+    last_encoder = new_encoder;
+    
+    }
+    
     waitAvailable();
     if(recv(data, &len))
     {

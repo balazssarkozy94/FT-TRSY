@@ -13,6 +13,8 @@
 //MAX BUFFER SIZE: 255
 #define ADC_BUFFER_SIZE         100
 
+#define BLOCK_OPERATION    0    /* block 0 in data eeprom memory: address is 0x1000 */
+
   uint8_t _lastInterruptFlags[2]; //TEST GLOBAL
 
 static void CLK_Config(void)
@@ -149,9 +151,31 @@ uint8_t TEST_DELETE_ME;
 uint16_t ADC_BUFFER;
 float v_lsb;
 char buffer [16];
+uint32_t add, startadd, stopadd = 0;
+volatile uint8_t current_byte;
 
 int main( void )
 {
+  //He igy kell beleirni a belso eepromba. Kezdocim FLASH_DATA_EEPROM_START_PHYSICAL_ADDRESS, 1kbyte, 8 bites regiszterek (nem tudom fordító tesz-e oda konstansokat, de szerintem azokat csak a flashbe. (legkisebb helyiérték környékén néztem, ott üres volt minden)
+  /*
+  FLASH_SetProgrammingTime(FLASH_ProgramTime_Standard);
+  FLASH_Unlock(FLASH_MemType_Data);
+  while (FLASH_GetFlagStatus(FLASH_FLAG_DUL) == RESET);
+  
+  FLASH_ProgramByte(FLASH_DATA_EEPROM_START_PHYSICAL_ADDRESS, 9);
+  //FLASH_ProgramWord();
+
+  while (FLASH_GetFlagStatus(FLASH_FLAG_HVOFF) == RESET);
+  
+  startadd = FLASH_DATA_EEPROM_START_PHYSICAL_ADDRESS;
+  stopadd = startadd + (uint16_t)FLASH_BLOCK_SIZE;
+  
+  for (add = startadd; add < stopadd; add++)
+      {
+        current_byte = FLASH_ReadByte(add);
+      }
+  */
+  
   CLK_Config();
   GPIO_Config();
   ShutdownRFM22B();

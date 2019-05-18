@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <project>
+        <path>$WS_DIR$\FT_TRMT_FW\FT_TRMT.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\FT_TSCP_FW\FT_TSCP.ewp</path>
+    </project>
+    <batchBuild />
+</workspace>
