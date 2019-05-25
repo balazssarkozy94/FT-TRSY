@@ -4,8 +4,6 @@
 #include "rfm22reg.h"
 #include "RFM22B.h"
 
-extern   uint8_t _lastInterruptFlags[2]; //TEST GLOBAL
-
 void NselRFM22B(BitAction state)
 {
   GPIO_WriteBit(GPIOB, GPIO_Pin_4, state);
@@ -311,7 +309,7 @@ void handleInterrupt()
 {
   char buffer [16]; //TEST
   
-//  uint8_t _lastInterruptFlags[2]; //TEST NOT LOCAL
+  uint8_t _lastInterruptFlags[2];
   
   // Read the interrupt flags which clears the interrupt
   ReadBurstRFM22B(RF22_REG_03_INTERRUPT_STATUS1, _lastInterruptFlags, 2);
@@ -608,7 +606,7 @@ void waitAvailable()
 // Return true if there is a message available
 bool waitAvailableTimeout(uint16_t timeout)
 {
-    unsigned long endtime = millis() + timeout;
+    uint32_t endtime = millis() + timeout;
     while (millis() < endtime)
 	if (available())
 	    return true;

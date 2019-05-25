@@ -72,14 +72,13 @@
         <LogFile>_ ""</LogFile>
     </TermIOLog>
     <Breakpoints>
-        <Bp0>_ "STD_CODE" "{$PROJ_DIR$\main.c}.216.5" 1 0 0 0 "" 0 ""</Bp0>
-        <Bp1>_ "STD_CODE" "{$PROJ_DIR$\main.c}.194.3" 1 0 0 0 "" 0 ""</Bp1>
-        <Count>2</Count>
+        <Count>0</Count>
     </Breakpoints>
     <Aliases>
-        <A0>_ "C:\Users\Balazs\Desktop\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_exti.c" "C:\Users\Balazs\Desktop\FT-TRSY\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_exti.c"</A0>
-        <A1>_ "C:\Users\Balazs\Desktop\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_itc.c" "C:\Users\Balazs\Desktop\FT-TRSY\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_itc.c"</A1>
-        <Count>2</Count>
+        <A0>_ "C:\Users\Balazs\Desktop\FT-TRSY\FT_TSCP_FW\main.c" "D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\main.c"</A0>
+        <A1>_ "C:\Users\Balazs\Desktop\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_exti.c" "D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_exti.c"</A1>
+        <A2>_ "C:\Users\Balazs\Desktop\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_itc.c" "C:\Users\Balazs\Desktop\FT-TRSY\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_itc.c"</A2>
+        <Count>3</Count>
         <SuppressDialog>1</SuppressDialog>
     </Aliases>
     <DebuggerSettings>

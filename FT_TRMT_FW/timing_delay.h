@@ -37,6 +37,8 @@
 void Delay(__IO uint32_t nTime);
 void TimingDelay_Decrement(void);
 void TimingDelay_Init(void);
+void SystickHandler(void);
+uint32_t millis(void);
 
 #endif /* __TIMING_DELAY_H */
 

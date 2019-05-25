@@ -1,18 +1,18 @@
-"C:\Users\Balazs\Desktop\FT_TRMT_FW\HD44780.c"
+"D:\STM8Workspace\FT-TRSY\FT_TRMT_FW\HD44780.c"
 -std=c99
 -ferror-limit=0
 -I
-C:\Users\Balazs\Desktop\FT_TRMT_FW
+D:\STM8Workspace\FT-TRSY\FT_TRMT_FW
 -I
-C:\Users\Balazs\Desktop\FT_TRMT_FW\STM8L15x_StdPeriph_Driver\inc
+D:\STM8Workspace\FT-TRSY\FT_TRMT_FW\STM8L15x_StdPeriph_Driver\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\stm8\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\stm8\inc\c
 -I
-C:\Users\Balazs\Desktop\FT_TRMT_FW
+D:\STM8Workspace\FT-TRSY\FT_TRMT_FW
 -I
-C:\Users\Balazs\Desktop\FT_TRMT_FW\STM8L15x_StdPeriph_Driver\inc
+D:\STM8Workspace\FT-TRSY\FT_TRMT_FW\STM8L15x_StdPeriph_Driver\inc
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff
 -D__CHAR_MIN__=0

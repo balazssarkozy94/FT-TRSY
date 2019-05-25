@@ -56,6 +56,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 static __IO uint32_t TimingDelay;
+static __IO uint32_t SysTick;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -127,6 +128,16 @@ void TimingDelay_Decrement(void)
   {
     TimingDelay--;
   }
+}
+
+void SystickHandler(void)
+{
+  SysTick++;
+}
+
+uint32_t millis(void)
+{
+  return SysTick;
 }
 
 /**

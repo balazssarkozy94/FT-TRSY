@@ -322,6 +322,7 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19)
      it is recommended to set a breakpoint on the following instruction.
   */
   TimingDelay_Decrement(); 
+  SystickHandler();
   TIM2_ClearITPendingBit(TIM2_IT_Update);
 }
 
