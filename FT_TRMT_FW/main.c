@@ -8,12 +8,12 @@
 
 #include "bsp.h"
 
-  char buffer [16]; 
-  uint32_t ADC_BUFFER;
-  double v_lsb;
 
 int main( void )
 {  
+  char buffer [16]; 
+  uint32_t ADC_BUFFER;
+  double v_lsb;
 
   InitHardware();
   
