@@ -49,7 +49,7 @@
         <MultiCoreRunAll>1</MultiCoreRunAll>
     </Simulator>
     <DebugChecksum>
-        <Checksum>2900763139</Checksum>
+        <Checksum>3967588465</Checksum>
     </DebugChecksum>
     <CallStack>
         <ShowArgs>0</ShowArgs>
@@ -72,7 +72,9 @@
         <LogFile>_ ""</LogFile>
     </TermIOLog>
     <Breakpoints>
-        <Count>0</Count>
+        <Bp0>_ "STD_CODE" "{$PROJ_DIR$\..\FT_TRMT_FW\RFM22B.c}.791.1" 0 0 0 0 "" 0 ""</Bp0>
+        <Bp1>_ "STD_CODE" "{$PROJ_DIR$\..\FT_TRMT_FW\RFM22B.c}.791.1" 0 0 0 0 "" 0 ""</Bp1>
+        <Count>2</Count>
     </Breakpoints>
     <Aliases>
         <A0>_ "C:\Users\Balazs\Desktop\FT-TRSY\FT_TSCP_FW\main.c" "D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\main.c"</A0>

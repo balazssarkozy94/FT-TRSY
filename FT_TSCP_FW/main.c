@@ -50,7 +50,7 @@ static void GPIO_Config(void)
   GPIO_Init(GPIOB, GPIO_Pin_0, GPIO_Mode_Out_PP_High_Fast);
 
   /* Configure Motor driver pin */
-  GPIO_Init(GPIOD, GPIO_Pin_4, GPIO_Mode_Out_PP_High_Fast);
+  //GPIO_Init(GPIOD, GPIO_Pin_4, GPIO_Mode_Out_PP_High_Fast);
   
   /* Configure Encoder pin */
   GPIO_Init(GPIOD, GPIO_Pin_1, GPIO_Mode_In_PU_No_IT);
@@ -195,7 +195,7 @@ int main( void )
   while(1)
   {
     
-    for(delete_me = 0; delete_me < 10; delete_me++)
+    /*for(delete_me = 0; delete_me < 10; delete_me++)
     {
       
     Delay(500);
@@ -211,15 +211,19 @@ int main( void )
     
     last_encoder = new_encoder;
     
-    }
+    }*/
     
-    waitAvailable();
+    /*waitAvailable();
     if(recv(data, &len))
     {
        GPIO_ToggleBits(GPIOC, GPIO_Pin_0);
-    }
+    }*/
     
-
+    Delay(100);
+    uint8_t buf[RF22_MAX_MESSAGE_LEN] = "Poop";
+    send(buf, sizeof(buf)); 
+    waitPacketSent();
+    GPIO_ToggleBits(GPIOC, GPIO_Pin_0);
   }
 }
 

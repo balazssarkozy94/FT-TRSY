@@ -2198,6 +2198,9 @@
     </file>
     <file>
         <name>$PROJ_DIR$\stm8l15x_it.c</name>
+        <configuration>
+            <name>Debug</name>
+        </configuration>
     </file>
     <file>
         <name>$PROJ_DIR$\stm8l15x_it.h</name>

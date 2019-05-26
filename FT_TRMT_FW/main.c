@@ -1,26 +1,29 @@
-#include "bsp.h"
+#include "stm8l15x_conf.h"
+#include "stm8l15x_gpio.h"
 #include "timing_delay.h"
 #include "HD44780.h"
 #include "RFM22B.h"
-#include "eeprom.h"
-
+#include "stm8l15x_it.h"
 #include <stdio.h>
 
-volatile int kuki[10];
+#include "bsp.h"
+
+  char buffer [16]; 
+  uint32_t ADC_BUFFER;
+  double v_lsb;
 
 int main( void )
-{
-  char buffer[17];
-  
+{  
+
   InitHardware();
-    
+  
   while(1)
-  {  
+  {
     Delay(500);
     
-    LCD_LOCATE(1, 1);    
-    uint16_t ADC_BUFFER = readADC_VREF();
-    float v_lsb = 2.507/ADC_BUFFER*2.0162; //vref + voltage divider
+    LCD_LOCATE(1, 1);
+    ADC_BUFFER = readADC_VREF();
+    v_lsb = 2.507/ADC_BUFFER*2.0162; //vref + voltage divider
     sprintf(buffer, "VREF: 0x%03X\n", ADC_BUFFER);
     LCD_printstring(buffer);
     
@@ -32,21 +35,21 @@ int main( void )
     LCD_LOCATE(4, 1);
     sprintf(buffer, "millis: %d  \n", (int)millis());
     LCD_printstring(buffer);
-   
+    
     GPIO_ToggleBits(GPIOC, GPIO_Pin_1);
-
-    for (int i = 0; i < 10; i++)
+      
+    uint8_t data[RF22_MAX_MESSAGE_LEN];
+    uint8_t len = sizeof(data);
+    //waitAvailable();
+    waitAvailableTimeout(2000);
+    if(recv(data, &len))
     {
-      kuki[i] = ReadEepromByte(i);
+       GPIO_ToggleBits(GPIOC, GPIO_Pin_0);
     }
     
-    uint8_t buf[RF22_MAX_MESSAGE_LEN] = "Poop";
+    /*uint8_t buf[RF22_MAX_MESSAGE_LEN] = "Poop";
     send(buf, sizeof(buf));
-    waitPacketSent();
-    
-    GPIO_WriteBit(GPIOC, GPIO_Pin_0, RESET);
-    waitAvailableTimeout(200);
-    GPIO_WriteBit(GPIOC, GPIO_Pin_0, SET);
+    waitPacketSent();*/
   }
 }
 

@@ -3,6 +3,10 @@
 #include "timing_delay.h"
 #include "rfm22reg.h"
 #include "RFM22B.h"
+//#include "math.h"
+#include "string.h"
+
+uint8_t _lastInterruptFlags[2]; //TEST GLOBAL
 
 void NselRFM22B(BitAction state)
 {
@@ -307,9 +311,8 @@ bool RF22init(void)
 /* --------------------------------------------------------------- */
 void handleInterrupt()
 {
-  char buffer [16]; //TEST
   
-  uint8_t _lastInterruptFlags[2];
+//  uint8_t _lastInterruptFlags[2]; //TEST NOT LOCAL
   
   // Read the interrupt flags which clears the interrupt
   ReadBurstRFM22B(RF22_REG_03_INTERRUPT_STATUS1, _lastInterruptFlags, 2);

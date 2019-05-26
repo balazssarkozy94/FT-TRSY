@@ -1,4 +1,6 @@
 ﻿D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\FT_TSCP.pbd
+D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\main.pbi
+D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\RFM22B.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_adc.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_aes.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_beep.pbi
@@ -11,6 +13,7 @@ D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_flash.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_gpio.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_i2c.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_irtim.pbi
+D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_it.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_itc.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_iwdg.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_lcd.pbi
@@ -27,7 +30,4 @@ D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_tim5.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_usart.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_wfe.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_wwdg.pbi
-D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\main.pbi
-D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\RFM22B.pbi
-D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\stm8l15x_it.pbi
 D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\Debug\Obj\timing_delay.pbi

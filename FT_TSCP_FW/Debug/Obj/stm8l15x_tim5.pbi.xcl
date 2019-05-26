@@ -1,18 +1,18 @@
-"C:\Users\Balazs\Desktop\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim5.c"
+"D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim5.c"
 -std=c99
 -ferror-limit=0
 -I
-C:\Users\Balazs\Desktop\FT_TSCP_FW
+D:\STM8Workspace\FT-TRSY\FT_TSCP_FW
 -I
-C:\Users\Balazs\Desktop\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\inc
+D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\stm8\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\stm8\inc\c
 -I
-C:\Users\Balazs\Desktop\FT_TSCP_FW
+D:\STM8Workspace\FT-TRSY\FT_TSCP_FW
 -I
-C:\Users\Balazs\Desktop\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\inc
+D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\inc
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff
 -D__CHAR_MIN__=0
