@@ -3,8 +3,9 @@
 #include "timing_delay.h"
 #include "rfm22reg.h"
 #include "RFM22B.h"
+#include "math.h"
+#include "string.h"
 
-extern   uint8_t _lastInterruptFlags[2]; //TEST GLOBAL
 
 void NselRFM22B(BitAction state)
 {
@@ -28,7 +29,6 @@ void ResetRFM22B(void)
   EnableRFM22B();
 }
 
-
 uint8_t ReadSingleRFM22B(uint8_t address)
 {
   uint8_t i;
@@ -42,7 +42,7 @@ uint8_t ReadSingleRFM22B(uint8_t address)
   while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_TXE));
   while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_RXNE));
   result = SPI_ReceiveData(SPI1);
-  for(i = 0; i<10; i++);  
+  for(i = 0; i<100; i++);  
   NselRFM22B(SET);
   return result;
 }
@@ -59,7 +59,7 @@ void WriteSingleRFM22B(uint8_t address, uint8_t message)
   while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_TXE));
   while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_RXNE));
   SPI_ReceiveData(SPI1);
-  for(i = 0; i<10; i++);  
+  for(i = 0; i<100; i++);  
   NselRFM22B(SET);
   return;
 }
@@ -71,16 +71,16 @@ void ReadBurstRFM22B(uint8_t address, uint8_t* dest, uint8_t len)
   SPI_SendData(SPI1, (address & 0x7F));         //MSB 0 FOR READ
   while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_TXE));
   while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_RXNE));
-  for(i = 0; i<10; i++); 
+  for(i = 0; i<100; i++); 
   SPI_ReceiveData(SPI1);
   while(len--)
   {
     SPI_SendData(SPI1, 0);
     while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_TXE));
     while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_RXNE));
-    for(i = 0; i<10; i++); 
+    for(i = 0; i<100; i++); 
     *dest = SPI_ReceiveData(SPI1);
-    *dest++;
+    dest++;
   }
   NselRFM22B(SET);
   return;
@@ -97,9 +97,9 @@ void WriteBurstRFM22B(uint8_t address, uint8_t* src, uint8_t len)
     while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_TXE));
     while(!SPI_GetFlagStatus(SPI1, SPI_FLAG_RXNE));
     SPI_ReceiveData(SPI1);
-    *src++;
+    src++;
   }     
-  for(i = 0; i<10; i++); 
+  for(i = 0; i<100; i++); 
   NselRFM22B(SET);
   return;
 }
@@ -221,7 +221,7 @@ bool RF22init(void)
 	_txGood = 0;
 
 	// Wait for RF22 POR (up to 16msec)
-    Delay(16);
+    Delay(50);
 
     // Initialise the slave select pin
 //    pinMode(_slaveSelectPin, OUTPUT);
@@ -299,8 +299,8 @@ bool RF22init(void)
 //    setModemConfig(FSK_Rb125Fd125);
 
     // Minimum power
-    setTxPower(RF22_TXPOW_8DBM);
-//    setTxPower(RF22_TXPOW_17DBM);
+//    setTxPower(RF22_TXPOW_8DBM);
+    setTxPower(RF22_TXPOW_17DBM);
 
     return true;
 }
@@ -309,16 +309,15 @@ bool RF22init(void)
 /* --------------------------------------------------------------- */
 void handleInterrupt()
 {
-  char buffer [16]; //TEST
   
-//  uint8_t _lastInterruptFlags[2]; //TEST NOT LOCAL
+  uint8_t _lastInterruptFlags[2]; //TEST NOT LOCAL
   
   // Read the interrupt flags which clears the interrupt
   ReadBurstRFM22B(RF22_REG_03_INTERRUPT_STATUS1, _lastInterruptFlags, 2);
  
   //TEST DELETE ME
-//  _lastInterruptFlags[0] = 0x24;
-//  _lastInterruptFlags[1] = 0x02;
+  //_lastInterruptFlags[0] = 0x02;
+  //_lastInterruptFlags[1] = 0x52;
   //TEST END
   
   if (_lastInterruptFlags[0] & RF22_IFFERROR)
@@ -608,7 +607,7 @@ void waitAvailable()
 // Return true if there is a message available
 bool waitAvailableTimeout(uint16_t timeout)
 {
-    unsigned long endtime = millis() + timeout;
+    uint32_t endtime = millis() + timeout;
     while (millis() < endtime)
 	if (available())
 	    return true;

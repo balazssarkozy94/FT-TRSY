@@ -199,7 +199,8 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11)
   /* In order to detect unexpected events during development,
      it is recommended to set a breakpoint on the following instruction.
   */
-  rfIsr();
+  //rfIsr();
+  handleInterrupt();
   EXTI_ClearITPendingBit(EXTI_IT_Pin3);
 }
 

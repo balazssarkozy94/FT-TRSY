@@ -192,6 +192,9 @@ int main( void )
   Delay(100);
   new_encoder = 0;
   last_encoder = 0;
+  
+  int i = 0;
+  
   while(1)
   {
     
@@ -219,11 +222,13 @@ int main( void )
        GPIO_ToggleBits(GPIOC, GPIO_Pin_0);
     }*/
     
-    Delay(100);
-    uint8_t buf[RF22_MAX_MESSAGE_LEN] = "Poop";
+    Delay(200);
+    uint8_t buf[RF22_MAX_MESSAGE_LEN];
+    sprintf(buf, "kutyafasz %d", i);
     send(buf, sizeof(buf)); 
     waitPacketSent();
     GPIO_ToggleBits(GPIOC, GPIO_Pin_0);
+    i++;
   }
 }
 
