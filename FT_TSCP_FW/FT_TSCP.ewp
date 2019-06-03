@@ -1692,13 +1692,76 @@
         </file>
     </group>
     <file>
+        <name>$PROJ_DIR$\bsp.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_adc.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_adc.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_clk_config.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_clk_config.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_eeprom.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_eeprom.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_encoder.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_encoder.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_itc_config.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_itc_config.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_led.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_led.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_pwm_timer.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_pwm_timer.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_rf_com.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_rf_com.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_rfm22reg.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_spi.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_spi.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_timing_delay.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\bsp_timing_delay.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\main.c</name>
-    </file>
-    <file>
-        <name>$PROJ_DIR$\RFM22B.c</name>
-    </file>
-    <file>
-        <name>$PROJ_DIR$\RFM22B.h</name>
     </file>
     <file>
         <name>$PROJ_DIR$\stm8l15x_conf.h</name>
@@ -1910,9 +1973,9 @@
         <name>$PROJ_DIR$\stm8l15x_it.h</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\timing_delay.c</name>
+        <name>$PROJ_DIR$\thread_handler.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\timing_delay.h</name>
+        <name>$PROJ_DIR$\thread_handler.h</name>
     </file>
 </project>

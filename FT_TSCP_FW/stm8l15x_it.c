@@ -28,8 +28,15 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8l15x_it.h"
-#include "timing_delay.h"
     
+#include "stm8l15x_conf.h"
+#include "stm8l15x_gpio.h"
+    
+#include "bsp_timing_delay.h"
+#include "bsp_rf_com.h"    
+    
+#include "thread_handler.h"
+
 /** @addtogroup STM8L15x_StdPeriph_Examples
   * @{
   */
@@ -197,7 +204,7 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11)
   /* In order to detect unexpected events during development,
      it is recommended to set a breakpoint on the following instruction.
   */
-  rfIsr();
+  handleInterrupt();
   EXTI_ClearITPendingBit(EXTI_IT_Pin3);
 }
 
@@ -214,6 +221,7 @@ INTERRUPT_HANDLER(EXTI4_IRQHandler, 12)
   
   if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4) == SET)
   {
+    
     //Button_Handler(BUT1);
   }
   EXTI_ClearITPendingBit(EXTI_IT_Pin4);
@@ -319,7 +327,9 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19)
   /* In order to detect unexpected events during development,
      it is recommended to set a breakpoint on the following instruction.
   */
-  TimingDelay_Decrement(); 
+  TimingDelay_Decrement();
+  SysTickHandler();
+  MilliThread();
   TIM2_ClearITPendingBit(TIM2_IT_Update);
 }
 
