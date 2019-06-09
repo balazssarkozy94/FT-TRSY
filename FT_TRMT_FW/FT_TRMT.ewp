@@ -1767,6 +1767,15 @@
         <name>$PROJ_DIR$\bsp_timing_delay.h</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\communication_handler.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\communication_handler.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\ft_remote_types.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\main.c</name>
     </file>
     <file>

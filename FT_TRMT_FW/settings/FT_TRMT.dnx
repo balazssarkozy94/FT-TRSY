@@ -49,7 +49,7 @@
         <MultiCoreRunAll>1</MultiCoreRunAll>
     </Simulator>
     <DebugChecksum>
-        <Checksum>650356494</Checksum>
+        <Checksum>1670147437</Checksum>
     </DebugChecksum>
     <CallStack>
         <ShowArgs>0</ShowArgs>
@@ -62,6 +62,13 @@
         <GraphEnabled>0</GraphEnabled>
         <ShowTimeLog>1</ShowTimeLog>
     </DataSample>
+    <Breakpoints>
+        <Bp0>_ "STD_CODE" "{$PROJ_DIR$\bsp_input_gpio.c}.12.3" 1 0 0 0 "" 0 ""</Bp0>
+        <Bp1>_ "STD_CODE" "{$PROJ_DIR$\bsp_input_gpio.c}.24.5" 1 0 0 0 "" 0 ""</Bp1>
+        <Bp2>_ "STD_CODE" "{$PROJ_DIR$\bsp_input_gpio.c}.21.3" 1 0 0 0 "" 0 ""</Bp2>
+        <Bp3>_ "STD_CODE" "{$PROJ_DIR$\bsp_itc_config.c}.10.3" 1 0 0 0 "" 0 ""</Bp3>
+        <Count>4</Count>
+    </Breakpoints>
     <LogFile>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
@@ -71,9 +78,6 @@
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
     </TermIOLog>
-    <Breakpoints>
-        <Count>0</Count>
-    </Breakpoints>
     <Aliases>
         <A0>_ "C:\Users\Balazs\Desktop\FT-TRSY\FT_TRMT_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_itc.c" "D:\STM8Workspace\FT-TRSY\FT_TRMT_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_itc.c"</A0>
         <A1>_ "C:\Users\Balazs\Desktop\FT_TRMT_FW\main.c" "C:\Users\Balazs\Desktop\FT-TRSY\FT_TRMT_FW\main.c"</A1>

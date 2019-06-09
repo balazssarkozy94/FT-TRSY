@@ -17,3 +17,8 @@ void InitEncoder(void)
  
   TIM3_Cmd(ENABLE);
 }
+
+uint16_t GetEncoderValue(void)
+{
+  return TIM3_GetCounter();
+}

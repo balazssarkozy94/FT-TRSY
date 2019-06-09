@@ -13,6 +13,7 @@ void InitInputGpio(void)
   EXTI_SetPinSensitivity(EXTI_Pin_4, EXTI_Trigger_Falling);
   EXTI_SetPinSensitivity(EXTI_Pin_5, EXTI_Trigger_Falling);
   EXTI_SetPinSensitivity(EXTI_Pin_6, EXTI_Trigger_Falling);
+  enableInterrupts();
 }
 
 void ButtonInterruptHandler(ButtonType button)

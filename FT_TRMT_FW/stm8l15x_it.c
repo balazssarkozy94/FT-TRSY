@@ -223,8 +223,7 @@ INTERRUPT_HANDLER(EXTI4_IRQHandler, 12)
   
   if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4) == SET)
   {
-    
-    //Button_Handler(BUT1);
+    //ButtonInterruptHandler(BUTTON_LEFT);
   }
   EXTI_ClearITPendingBit(EXTI_IT_Pin4);
 }

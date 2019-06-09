@@ -1761,7 +1761,22 @@
         <name>$PROJ_DIR$\bsp_timing_delay.h</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\communication_handler.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\communication_handler.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\ft_remote_types.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\main.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\speed_controller.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\speed_controller.h</name>
     </file>
     <file>
         <name>$PROJ_DIR$\stm8l15x_conf.h</name>
