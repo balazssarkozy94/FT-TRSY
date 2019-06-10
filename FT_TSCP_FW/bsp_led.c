@@ -7,12 +7,12 @@ void InitLed(void)
 
 void SetGreenLed(void)
 {
-  GPIO_SetBits(GPIOC, GPIO_Pin_1);
+  GPIO_ResetBits(GPIOC, GPIO_Pin_1);
 }
 
 void ResetGreenLed(void)
 {
-  GPIO_ResetBits(GPIOC, GPIO_Pin_1);
+  GPIO_SetBits(GPIOC, GPIO_Pin_1);
 }
 
 void ToggleGreenLed(void)
@@ -22,12 +22,12 @@ void ToggleGreenLed(void)
 
 void SetRedLed(void)
 {
-  GPIO_ToggleBits(GPIOC, GPIO_Pin_0);
+  GPIO_ResetBits(GPIOC, GPIO_Pin_0);
 }
 
 void ResetRedLed(void)
 {
-  GPIO_ToggleBits(GPIOC, GPIO_Pin_0);
+  GPIO_SetBits(GPIOC, GPIO_Pin_0);
 }
 
 void ToggleRedLed(void)

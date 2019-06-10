@@ -5,7 +5,7 @@
 
 typedef struct SpeedControllerType
 {
-  float motor_speed_5sec;
+  float motor_speed_1sec;
   float motor_speed_whole_turn;
   float position_error_whole_turn;
   float controller_speed_ref;

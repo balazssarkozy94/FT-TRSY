@@ -18,11 +18,10 @@ void RfComInit(void)
   EnableRFM22B();
   
   EXTI_ClearITPendingBit(EXTI_IT_Pin3);
-  enableInterrupts();
-  Delay(100);
+  Delay(10);
   
   RF22init();
-  Delay(100);
+  Delay(10);
 }
 
 void NselRFM22B(BitAction state)

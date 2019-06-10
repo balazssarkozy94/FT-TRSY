@@ -2,9 +2,6 @@
 #define BSP_DISPLAY_H
 
 #include "stm8l15x_conf.h"
-#include "stm8l15x_gpio.h"
-#include "bsp_timing_delay.h"
-#include "stm8l15x_it.h"
 
 #define LCD_DATA_PORT GPIOD
 #define LCD_DATA_PORT GPIOD

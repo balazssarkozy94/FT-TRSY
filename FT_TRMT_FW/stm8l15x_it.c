@@ -221,9 +221,9 @@ INTERRUPT_HANDLER(EXTI4_IRQHandler, 12)
      it is recommended to set a breakpoint on the following instruction.
   */
   
-  if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4) == SET)
+  if(!GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4))
   {
-    //ButtonInterruptHandler(BUTTON_LEFT);
+    ButtonInterruptHandler(BUTTON_UP);
   }
   EXTI_ClearITPendingBit(EXTI_IT_Pin4);
 }
@@ -239,14 +239,13 @@ INTERRUPT_HANDLER(EXTI5_IRQHandler, 13)
      it is recommended to set a breakpoint on the following instruction.
   */
   
-  if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5) == SET)
+  if(!GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5))
   {
     ButtonInterruptHandler(BUTTON_LEFT);
-    //Button_Handler(BUT2);
   }
-  if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_5) == SET)
+  if(!GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_5))
   {
-    //Button_Handler(BUT4);
+    ButtonInterruptHandler(BUTTON_OK);
   }
   EXTI_ClearITPendingBit(EXTI_IT_Pin5);
 }
@@ -262,13 +261,13 @@ INTERRUPT_HANDLER(EXTI6_IRQHandler, 14)
      it is recommended to set a breakpoint on the following instruction.
   */
 
-  if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_6) == SET)
+  if(!GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_6))
   {
-    //Button_Handler(BUT3);
+    ButtonInterruptHandler(BUTTON_RIGHT);
   }
-  if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_6) == SET)
+  if(!GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_6))
   {
-    //Button_Handler(BUT5);
+    ButtonInterruptHandler(BUTTON_DOWN);
   }
   EXTI_ClearITPendingBit(EXTI_IT_Pin6);
 }

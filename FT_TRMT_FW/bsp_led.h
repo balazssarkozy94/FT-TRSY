@@ -2,7 +2,6 @@
 #define BSP_LED_H
 
 #include "stm8l15x_conf.h"
-#include "stm8l15x_gpio.h"
 
 void InitLed(void);
 

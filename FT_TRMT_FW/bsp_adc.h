@@ -2,8 +2,6 @@
 #define BSP_ADC_H
 
 #include "stm8l15x_conf.h"
-#include "stm8l15x_gpio.h"
-#include "stm8l15x_it.h"
 
 #define ADC_BUFFER_SIZE         100
 

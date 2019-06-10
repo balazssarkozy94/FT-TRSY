@@ -1,7 +1,7 @@
 #ifndef BSP_RFM22B_H
 #define BSP_RFM22B_H
 
-#include "stm8l15x_gpio.h"
+#include "stm8l15x_conf.h"
 
 void RfComInit(void);
 

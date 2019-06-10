@@ -1773,6 +1773,12 @@
         <name>$PROJ_DIR$\communication_handler.h</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\display_backlight.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\display_backlight.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\ft_remote_types.h</name>
     </file>
     <file>

@@ -17,7 +17,6 @@ double v_lsb;
   
 void CommunicationHandler(void)
 {  
-  SetPwm(500);
   /*  
   //LCD_LOCATE(1, 1);
   ADC_BUFFER = readADC_VREF();
@@ -38,6 +37,9 @@ void CommunicationHandler(void)
   
   if(recv((uint8_t*)&InputData, &len))
   {
+    uint8_t buf[RF22_MAX_MESSAGE_LEN] = "Poop";
+    send(buf, sizeof(buf));
+    
     LCD_LOCATE(1, 1);
     sprintf(buffer, "%.3f  %d \n", InputData.controller_speed_ref, (int)InputData.motor_pwm);
     LCD_printstring(buffer);
@@ -54,10 +56,4 @@ void CommunicationHandler(void)
     sprintf(buffer, "%.3f  %.3f \n", InputData.expected_pos, InputData.actual_pos);
     LCD_printstring(buffer);
   }
-    
-  /*
-  uint8_t buf[RF22_MAX_MESSAGE_LEN] = "Poop";
-  send(buf, sizeof(buf));
-  waitPacketSent();
-  */
 }

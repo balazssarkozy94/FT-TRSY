@@ -1,7 +1,7 @@
 #ifndef BSP_EEPROM_H
 #define BSP_EEPROM_H
 
-#include "stm8l15x_flash.h"
+#include "stm8l15x_conf.h"
 
 void WriteEepromByte(uint8_t dataByte, uint16_t address);
 

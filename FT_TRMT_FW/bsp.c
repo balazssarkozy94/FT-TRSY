@@ -14,7 +14,7 @@
 void InitHardware(void)
 {
   CLK_Config();
-  
+    
   TimingDelay_Init();  
   
   InitInputGpio();
@@ -24,6 +24,7 @@ void InitHardware(void)
   InitAdc();
   
   ITC_Config();
+  enableInterrupts();
   
   RfComInit();  
   LCD_INIT();
