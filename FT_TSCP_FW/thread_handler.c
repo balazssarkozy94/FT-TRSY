@@ -11,4 +11,5 @@ void MilliThread(void)
 void LoopThread(void)
 {
   CommunicationHandler();
+  SpeedControllerLoop();
 }

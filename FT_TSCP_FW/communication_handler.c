@@ -35,18 +35,5 @@ void CommunicationHandler(void)
   
   ResetGreenLed();
   
-  //ShutdownRFM22B();
-  
   Delay(1000);
-  
-  //RfComInit();
-  
-  //EnableRFM22B();
-  
-  //EXTI_ClearITPendingBit(EXTI_IT_Pin3);
-  //enableInterrupts();
-  Delay(100);
-  
-  //RF22init();
-  Delay(200);
 }
