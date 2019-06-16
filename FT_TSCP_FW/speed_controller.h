@@ -11,18 +11,15 @@
 #define SPEED_CORRECTION_SIZE           128
 #define SPEED_CORRECTION_FILTER_SIZE    5
 
-#include "ft_remote_types.h"
+#define CONTROLLER_KP           30
+#define CONTROLLER_KI           500
+#define CORRECTION_MIN          0.2
+#define POS_ERROR_KP            0.5
+#define SPEED_REF_COR_DIV       3
 
-typedef enum SpeedControllerStateType
-{
-  SPEED_CONTROLLER_NOT_INITED,
-  SPEED_CONTROLLER_INITED,
-  SPEED_CONTROLLER_CALIBRATION_SEARCH_PWM,
-  SPEED_CONTROLLER_CALIBRATION_START,
-  SPEED_CONTROLLER_CALIBRATION_IN_PROGRESS,
-  SPEED_CONTROLLER_CALIBRATION_FINISHED,
-  SPEED_CONTROLLER_OK
-} SpeedControllerStateType;
+#define SPEED_1S_FILTER_WEIGHT  0.2
+
+#include "ft_remote_types.h"
 
 void InitSpeedController(void);
 

@@ -8,6 +8,8 @@
 #include "math.h"
 #include "string.h"
 
+#include <stdio.h>
+
 void RfComInit(void)
 {
   GPIO_Init(GPIOB, GPIO_Pin_2 | GPIO_Pin_4, GPIO_Mode_Out_PP_High_Fast);
@@ -304,8 +306,8 @@ bool RF22init(void)
   setModemConfig(FSK_Rb2_4Fd36);
 
   // Minimum power
-  setTxPower(RF22_TXPOW_8DBM);
-  //setTxPower(RF22_TXPOW_17DBM);
+  //setTxPower(RF22_TXPOW_8DBM);
+  setTxPower(RF22_TXPOW_17DBM);
 
   return true;
 }
@@ -460,13 +462,13 @@ bool setFrequency(float centre, float afcPullInRange)
   {
     centre /= 2;
     fbsel |= RF22_HBSEL;
-    afclimiter = afcPullInRange * 1000000.0 / 1250.0;
+    afclimiter = (uint8_t)(afcPullInRange * 1000000.0 / 1250.0);
   }
   else
   {
     if (afcPullInRange < 0.0 || afcPullInRange > 0.159375)
       return false;
-    afclimiter = afcPullInRange * 1000000.0 / 625.0;
+    afclimiter = (uint8_t)(afcPullInRange * 1000000.0 / 625.0);
   }
 
   centre /= 10.0;
@@ -475,7 +477,7 @@ bool setFrequency(float centre, float afcPullInRange)
   
   uint8_t fb = (uint8_t)integerPart - 24; // Range 0 to 23
   fbsel |= fb;
-  uint16_t fc = fractionalPart * 64000;
+  uint16_t fc = (uint16_t)(fractionalPart * 64000);
   WriteSingleRFM22B(RF22_REG_73_FREQUENCY_OFFSET1, 0);  // REVISIT
   WriteSingleRFM22B(RF22_REG_74_FREQUENCY_OFFSET2, 0);
   WriteSingleRFM22B(RF22_REG_75_FREQUENCY_BAND_SELECT, fbsel);
@@ -631,6 +633,9 @@ bool recv(uint8_t* buf, uint8_t* len)
   
   if (*len > _bufLen)
     *len = _bufLen;
+  
+  if (*len < 4)
+    *len = 4;
   
   memcpy(buf, _buf, *len);
   clearRxBuf();

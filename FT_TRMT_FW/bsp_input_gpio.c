@@ -7,7 +7,9 @@
 
 #include "bsp_led.h"
 
-#include "display_backlight.h"
+#include "display_handler.h"
+
+uint32_t filter_time = 0;
 
 void InitInputGpio(void)
 {
@@ -21,28 +23,39 @@ void InitInputGpio(void)
 
 void ButtonInterruptHandler(ButtonType button)
 {
+  if (filter_time < INPUT_FILTER_MS)
+    return;
+  
+  filter_time = 0;
+  
   switch (button)
   {
   case BUTTON_LEFT:
-    SetGreenLed();
+    DisplayLeftButtonPressed();
     break;
     
   case BUTTON_RIGHT:
-    ResetGreenLed();
+    DisplayRightButtonPressed();
     break;
   
   case BUTTON_UP:
-    IncreaseBrightness();
+    DisplayUpButtonPressed();
     break;
     
   case BUTTON_DOWN:
-    DecreaseBrightness();
+    DisplayDownButtonPressed();
     break;
       
   case BUTTON_OK:
-    ToggleRedLed();
+    DisplayOkButtonPressed();
     break;
   default:
     break;
   }
+}
+
+void ButtonFilterTimeHandler(void)
+{
+  if (filter_time < INPUT_FILTER_MS)
+      filter_time++;
 }

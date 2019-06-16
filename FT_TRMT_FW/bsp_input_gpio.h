@@ -1,6 +1,8 @@
 #ifndef BSP_INPUT_GPIO_H
 #define BSP_INPUT_GPIO_H
 
+#define INPUT_FILTER_MS         20
+
 typedef enum ButtonType
 {
   BUTTON_LEFT,
@@ -13,5 +15,7 @@ typedef enum ButtonType
 void InitInputGpio(void);
 
 void ButtonInterruptHandler(ButtonType button);
+
+void ButtonFilterTimeHandler(void);
 
 #endif

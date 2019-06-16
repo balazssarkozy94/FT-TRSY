@@ -1,13 +1,11 @@
 #include "communication_handler.h"
 
 #include "bsp_led.h"
-#include "bsp_timing_delay.h"
 #include "bsp_rf_com.h"
-#include "bsp_adc.h"
-#include "bsp_pwm_timer.h"
-#include "bsp_encoder.h"
+#include "bsp_timing_delay.h"
 
 #include "speed_controller.h"
+#include "ft_remote_types.h"
 
 #include <stdio.h>
 
@@ -16,24 +14,22 @@ void CommunicationHandler(void)
   //readADC_VBAT();
   //readADC_VREF();
   
-  SetGreenLed();
+  TelescopeMessageType TelescopeOutputMessage;
   
-  SpeedControllerType SpeedControllerData = GetSpeedController();
+  TelescopeOutputMessage.SpeedControllerData = GetSpeedController();
+  TelescopeOutputMessage.battery_voltage = 1.231;
   
-  send((uint8_t*)&SpeedControllerData, sizeof(SpeedControllerType));
+  send((uint8_t*)&TelescopeOutputMessage, sizeof(TelescopeMessageType));
   waitPacketSent();
+
+  waitAvailableTimeout(2000);
   
-  waitAvailableTimeout(200);
-  
-  uint8_t buf[RF22_MAX_MESSAGE_LEN];
-  uint8_t len = sizeof(buf);
-  
-  if(recv(buf, &len))
+  float RemoteInputMessage;
+  uint8_t len;
+
+  if(recv((uint8_t*)&RemoteInputMessage, &len))
   {
     ToggleRedLed();
+    SetSpeedRef(RemoteInputMessage);
   }
-  
-  ResetGreenLed();
-  
-  Delay(1000);
 }

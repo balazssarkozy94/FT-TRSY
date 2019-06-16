@@ -6,8 +6,6 @@
 
 SpeedControllerType SpeedController;
 
-SpeedControllerStateType SpeedControllerState = SPEED_CONTROLLER_NOT_INITED;
-
 uint32_t speed_controller_1sec_cycle = 0;
 uint32_t speed_controller_whole_turn_cycle = 0;
 
@@ -37,6 +35,8 @@ float speed_correction_characteristic[SPEED_CORRECTION_SIZE];
 
 void InitSpeedController(void)
 {  
+  SpeedController.SpeedControllerState = SPEED_CONTROLLER_NOT_INITED;
+  
   SpeedController.motor_speed_1sec = 0;
   SpeedController.motor_speed_whole_turn = 0;
   SpeedController.controller_speed_ref = 0;
@@ -49,10 +49,6 @@ void InitSpeedController(void)
   {
     speed_correction_characteristic[i] = (i + 1) * ((int)ENCODER_INCREMENT_PER_ROTATION / SPEED_CORRECTION_SIZE);
   }
- 
-  SpeedControllerState = SPEED_CONTROLLER_INITED;
-  
-  SetSpeedRef(1);
 }
 
 SpeedControllerType GetSpeedController(void)
@@ -63,7 +59,18 @@ SpeedControllerType GetSpeedController(void)
 
 void SetSpeedRef(float speed_ref)
 {
+  if (speed_ref < 0)
+  {
+    if ((speed_ref == -1) && (SpeedController.SpeedControllerState == SPEED_CONTROLLER_NOT_INITED))
+      SpeedController.SpeedControllerState = SPEED_CONTROLLER_INITED;
+    
+    return;
+  }
+  
   float speed_ref_diff = speed_ref - SpeedController.controller_speed_ref;
+  
+  if (speed_ref_diff == 0)
+    return;
   
   SpeedController.controller_speed_ref_with_offset += speed_ref_diff;
   SpeedController.controller_speed_ref +=speed_ref_diff;
@@ -79,7 +86,7 @@ float GetSpeedRef(void)
 }
 
 void SpeedControllerHandler(void)
-{  
+{    
   uint16_t actual_encoder = GetEncoderValue();
   
   uint16_t difference = actual_encoder - last_encoder;
@@ -96,7 +103,7 @@ void SpeedControllerHandler(void)
   {   
     uint16_t difference_1sec = 0;
     
-    if (SpeedControllerState != SPEED_CONTROLLER_OK)
+    if (SpeedController.SpeedControllerState != SPEED_CONTROLLER_OK)
       difference_1sec = actual_encoder - last_encoder_1sec;
     else
       difference_1sec = increment_integral_linearized - last_increment_integral_linearized_1sec;
@@ -104,24 +111,27 @@ void SpeedControllerHandler(void)
     SpeedController.motor_speed_1sec = (float)difference_1sec / (float)speed_controller_1sec_cycle;
     SpeedController.motor_speed_1sec = (MILLISECS_PER_MIN / (float)ENCODER_INCREMENT_PER_ROTATION) * SpeedController.motor_speed_1sec;
     
+    SpeedController.motor_speed_1sec_filtered = (1 - SPEED_1S_FILTER_WEIGHT) * SpeedController.motor_speed_1sec_filtered;
+    SpeedController.motor_speed_1sec_filtered += SPEED_1S_FILTER_WEIGHT * SpeedController.motor_speed_1sec;
+    
     last_encoder_1sec = actual_encoder;
     last_increment_integral_linearized_1sec = increment_integral_linearized;
     speed_controller_1sec_cycle = 0;
     
-    if (SpeedControllerState == SPEED_CONTROLLER_OK)
+    if (SpeedController.SpeedControllerState == SPEED_CONTROLLER_OK)
     {    
       float correction = SpeedController.position_error_whole_turn;
           
       if (correction < 0)
         correction = - correction;
       
-      float k_p = 15 * (correction + 0.1);
-      float k_i = 100 * (correction + 0.2);
+      float k_p = CONTROLLER_KP * (correction + CORRECTION_MIN);
+      float k_i = CONTROLLER_KI * (correction + CORRECTION_MIN);
       
       float actual_position_error = SpeedController.expected_pos - SpeedController.actual_pos;
       
       float speed_error = SpeedController.controller_speed_ref_with_offset - SpeedController.motor_speed_1sec;
-      speed_error += 0.05 * (correction + 0.1) * actual_position_error;
+      speed_error += POS_ERROR_KP * (correction + CORRECTION_MIN) * actual_position_error;
       
       speed_error_integral += k_i * speed_error;
       
@@ -137,27 +147,27 @@ void SpeedControllerHandler(void)
     SpeedController.motor_speed_whole_turn = (float)difference_whole_turn / (float)speed_controller_whole_turn_cycle;
     SpeedController.motor_speed_whole_turn = (MILLISECS_PER_MIN / (float)ENCODER_INCREMENT_PER_ROTATION) * SpeedController.motor_speed_whole_turn;
     
-    if (SpeedControllerState == SPEED_CONTROLLER_OK)
+    if (SpeedController.SpeedControllerState == SPEED_CONTROLLER_OK)
     {
       SpeedController.position_error_whole_turn = SpeedController.expected_pos - SpeedController.actual_pos;
-      SpeedController.controller_speed_ref_with_offset = SpeedController.controller_speed_ref + SpeedController.position_error_whole_turn / 5;
+      SpeedController.controller_speed_ref_with_offset = SpeedController.controller_speed_ref + SpeedController.position_error_whole_turn / SPEED_REF_COR_DIV;
     }
 
     last_encoder_whole_turn = actual_encoder;
     speed_controller_whole_turn_cycle = 0;
   }
   
-  if (SpeedControllerState == SPEED_CONTROLLER_INITED)
+  if (SpeedController.SpeedControllerState == SPEED_CONTROLLER_INITED)
   {
     calibration_cycle++;
     
     if (calibration_cycle > INIT_WAIT_TIME)
     {
       calibration_cycle = 0;
-      SpeedControllerState = SPEED_CONTROLLER_CALIBRATION_SEARCH_PWM;
+      SpeedController.SpeedControllerState = SPEED_CONTROLLER_CALIBRATION_SEARCH_PWM;
     }
   }
-  else if (SpeedControllerState == SPEED_CONTROLLER_CALIBRATION_SEARCH_PWM)
+  else if (SpeedController.SpeedControllerState == SPEED_CONTROLLER_CALIBRATION_SEARCH_PWM)
   {    
     if (SpeedController.motor_speed_1sec < CALIBRATION_MIN_SPEED)
     {
@@ -167,18 +177,18 @@ void SpeedControllerHandler(void)
     
     if (SpeedController.actual_pos > PWM_SEARCH_ROTATION)
     {
-      SpeedControllerState = SPEED_CONTROLLER_CALIBRATION_START;
+      SpeedController.SpeedControllerState = SPEED_CONTROLLER_CALIBRATION_START;
     }
   }
-  else if(SpeedControllerState == SPEED_CONTROLLER_CALIBRATION_START)
+  else if(SpeedController.SpeedControllerState == SPEED_CONTROLLER_CALIBRATION_START)
   {
     if (increment_integral >= ENCODER_INCREMENT_PER_ROTATION)
     {
       increment_integral = 0;
-      SpeedControllerState = SPEED_CONTROLLER_CALIBRATION_IN_PROGRESS;
+      SpeedController.SpeedControllerState = SPEED_CONTROLLER_CALIBRATION_IN_PROGRESS;
     }
   }
-  else if (SpeedControllerState == SPEED_CONTROLLER_CALIBRATION_IN_PROGRESS)
+  else if (SpeedController.SpeedControllerState == SPEED_CONTROLLER_CALIBRATION_IN_PROGRESS)
   {
     if (increment_integral < ENCODER_INCREMENT_PER_ROTATION)
     {
@@ -187,14 +197,14 @@ void SpeedControllerHandler(void)
     }
     else
     {
-      SpeedControllerState = SPEED_CONTROLLER_CALIBRATION_FINISHED;
+      SpeedController.SpeedControllerState = SPEED_CONTROLLER_CALIBRATION_FINISHED;
     }
   }
   
   speed_controller_1sec_cycle++;
   speed_controller_whole_turn_cycle++;
   
-  if (SpeedControllerState == SPEED_CONTROLLER_OK)
+  if (SpeedController.SpeedControllerState == SPEED_CONTROLLER_OK)
   {
     expected_increment_cycle++;
   }
@@ -202,7 +212,7 @@ void SpeedControllerHandler(void)
 
 void SpeedControllerLoop(void)
 {
-  if (SpeedControllerState == SPEED_CONTROLLER_CALIBRATION_FINISHED)
+  if (SpeedController.SpeedControllerState == SPEED_CONTROLLER_CALIBRATION_FINISHED)
   {
     for (int i = 0; i < SPEED_CORRECTION_SIZE; i++)
     {
@@ -247,7 +257,7 @@ void SpeedControllerLoop(void)
     
     increment_integral_offset = increment_integral_linearized;
     
-    SpeedControllerState = SPEED_CONTROLLER_OK;
+    SpeedController.SpeedControllerState = SPEED_CONTROLLER_OK;
   }
 }
 
