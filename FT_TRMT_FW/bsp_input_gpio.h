@@ -1,7 +1,7 @@
 #ifndef BSP_INPUT_GPIO_H
 #define BSP_INPUT_GPIO_H
 
-#define INPUT_FILTER_MS         20
+#define INPUT_FILTER_MS         200
 
 typedef enum ButtonType
 {

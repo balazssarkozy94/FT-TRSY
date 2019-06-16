@@ -17,6 +17,8 @@
 #define POS_ERROR_KP            0.5
 #define SPEED_REF_COR_DIV       3
 
+#define CORRECTION_START_POS    1.5
+
 #define SPEED_1S_FILTER_WEIGHT  0.2
 
 #include "ft_remote_types.h"

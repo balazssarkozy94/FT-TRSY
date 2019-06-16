@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>2</fileVersion>
-    <fileChecksum>142173858</fileChecksum>
+    <fileChecksum>2201079785</fileChecksum>
     <configuration>
         <name>Debug</name>
         <outputs>
@@ -263,6 +263,10 @@
             <file>$PROJ_DIR$\STM8L15x_StdPeriph_Driver\inc\stm8l15x_rst.h</file>
             <file>$PROJ_DIR$\Debug\Obj\bsp_adc.o</file>
             <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
+            <file>$PROJ_DIR$\Debug\Obj\battery_voltage.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\battery_voltage.pbi</file>
+            <file>$PROJ_DIR$\battery_voltage.c</file>
+            <file>$PROJ_DIR$\battery_voltage.h</file>
         </outputs>
         <file>
             <name>$PROJ_DIR$\communication_handler.c</name>
@@ -287,7 +291,7 @@
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 76 234 173 170 18 84 168 255 123 4 9 182 249 166 230 71 172 144 154 1 31 16 160 191 142 233 148 185 151 79 153 69 130 134 235 164 174 0 28</file>
+                    <file> 76 234 173 170 18 84 168 255 123 9 182 249 166 230 71 172 144 154 191 1 31 16 4 160 142 233 148 185 151 79 153 69 130 134 235 164 28 0 174</file>
                 </tool>
             </inputs>
         </file>
@@ -310,11 +314,11 @@
             <inputs>
                 <tool>
                     <name>ICCSTM8</name>
-                    <file> 44 7</file>
+                    <file> 44 7 261</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 44 7</file>
+                    <file> 44 7 261</file>
                 </tool>
             </inputs>
         </file>
@@ -445,11 +449,11 @@
             <inputs>
                 <tool>
                     <name>ICCSTM8</name>
-                    <file> 18 16 4 234 182 84 160 249 191 173 142 166 233 168 148 230 185 170 151 71 79 255 153 172 69 76 130 144 134 123 235 154 164 46 13 111 117 138 135 247 248 77 89 210 165</file>
+                    <file> 18 16 4 234 182 84 160 249 191 173 142 166 233 168 148 230 185 170 151 71 79 255 153 172 69 76 130 144 134 123 235 154 164 46 13 261 111 117 138 135 247 248 77 89 210 165 229</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 210 154 16 234 230 249 172 4 89 111 166 71 144 13 84 173 168 170 255 76 123 46 160 191 142 233 148 185 151 79 153 69 130 134 235 164 182 117 135 138 18 165 77 247 248</file>
+                    <file> 191 234 69 182 185 164 261 16 233 79 134 13 229 160 142 148 151 153 130 235 4 165 117 77 248 46 111 84 249 173 166 168 230 170 71 255 172 76 144 123 154 138 247 18 210 135 89</file>
                 </tool>
             </inputs>
         </file>
@@ -472,11 +476,11 @@
             <inputs>
                 <tool>
                     <name>ICCSTM8</name>
-                    <file> 7 35 31 4 234 182 84 160 249 191 173 142 166 233 168 148 230 185 170 151 71 79 255 153 172 69 76 130 144 134 123 235 154 164 0 18 16</file>
+                    <file> 7 35 31 4 234 182 84 160 249 191 173 142 166 233 168 148 230 185 170 151 71 79 255 153 172 69 76 130 144 134 123 235 154 164 0 18 16 261</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 234 191 69 182 185 164 18 233 79 134 31 148 160 142 151 153 130 235 35 0 4 84 249 173 166 168 230 170 71 255 172 76 144 123 154 16 7</file>
+                    <file> 249 234 172 4 230 154 191 18 166 71 144 31 84 173 168 170 255 76 123 35 0 261 148 160 142 233 185 151 79 153 69 130 134 235 164 182 16 7</file>
                 </tool>
             </inputs>
         </file>
@@ -1070,7 +1074,7 @@
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 71 182 234 166 144 2 249 230 172 154 4 18 84 173 168 170 255 76 123 148 31 160 191 142 233 185 151 79 153 69 130 134 235 164 16 35</file>
+                    <file> 71 182 234 166 144 2 249 230 172 154 4 18 84 173 168 170 255 76 123 148 31 160 191 142 233 185 151 79 153 69 130 134 235 164 35 16</file>
                 </tool>
             </inputs>
         </file>
@@ -1166,7 +1170,7 @@
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 124 85 256 91 64 205 139 181 212 250 78 243 81 188 206 120 194 127 251 126 155 73 159 163 62 158 129 157 83 238 74 68 149 200 63 227 75 122 70 184 244 193 253 242 132 189 241 178 257</file>
+                    <file> 124 258 85 256 91 64 205 139 181 212 250 78 243 81 188 206 120 194 127 251 126 155 73 159 163 62 158 129 157 83 238 74 68 149 200 63 227 75 122 70 184 244 193 253 242 132 189 241 178 257</file>
                 </tool>
             </inputs>
         </file>
@@ -1529,6 +1533,29 @@
                     <file> 199 237</file>
                 </tool>
             </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\battery_voltage.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCSTM8</name>
+                    <file> 258</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 259</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCSTM8</name>
+                    <file> 261 39 4 234 182 84 160 249 191 173 142 166 233 168 148 230 185 170 151 71 79 255 153 172 69 76 130 144 134 123 235 154 164</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 234 148 235 160 153 142 151 130 4 191 233 185 79 69 134 164 182 39 84 249 173 166 168 230 170 71 255 172 76 144 123 154 261</file>
+                </tool>
+            </inputs>
         </file>
     </configuration>
     <configuration>

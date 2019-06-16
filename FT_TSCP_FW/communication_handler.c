@@ -5,31 +5,30 @@
 #include "bsp_timing_delay.h"
 
 #include "speed_controller.h"
+#include "battery_voltage.h"
 #include "ft_remote_types.h"
 
-#include <stdio.h>
-
 void CommunicationHandler(void)
-{
-  //readADC_VBAT();
-  //readADC_VREF();
-  
+{  
   TelescopeMessageType TelescopeOutputMessage;
   
   TelescopeOutputMessage.SpeedControllerData = GetSpeedController();
-  TelescopeOutputMessage.battery_voltage = 1.231;
+  TelescopeOutputMessage.battery_voltage = GetFilteredBatteryVoltage();;
   
   send((uint8_t*)&TelescopeOutputMessage, sizeof(TelescopeMessageType));
   waitPacketSent();
 
-  waitAvailableTimeout(2000);
+  waitAvailableTimeout(500);
   
   float RemoteInputMessage;
   uint8_t len;
 
   if(recv((uint8_t*)&RemoteInputMessage, &len))
   {
-    ToggleRedLed();
     SetSpeedRef(RemoteInputMessage);
+    
+    SetRedLed();
+    Delay(1);
+    ResetRedLed();
   }
 }
