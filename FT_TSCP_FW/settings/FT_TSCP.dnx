@@ -16,7 +16,7 @@
         <ShowSource>1</ShowSource>
     </Trace1>
     <DebugChecksum>
-        <Checksum>60765643</Checksum>
+        <Checksum>2728690580</Checksum>
     </DebugChecksum>
     <CallStack>
         <ShowArgs>0</ShowArgs>
@@ -83,11 +83,6 @@
         <GraphEnabled>0</GraphEnabled>
         <ShowTimeLog>1</ShowTimeLog>
     </DataSample>
-    <Breakpoints>
-        <Bp0>_ "STD_CODE" "{$PROJ_DIR$\..\FT_TRMT_FW\RFM22B.c}.0.1" 0 0 0 0 "" 0 ""</Bp0>
-        <Bp1>_ "STD_CODE" "{$PROJ_DIR$\..\FT_TRMT_FW\RFM22B.c}.0.1" 0 0 0 0 "" 0 ""</Bp1>
-        <Count>2</Count>
-    </Breakpoints>
     <LogFile>
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
@@ -97,6 +92,11 @@
         <LoggingEnabled>_ 0</LoggingEnabled>
         <LogFile>_ ""</LogFile>
     </TermIOLog>
+    <Breakpoints>
+        <Bp0>_ "STD_CODE" "{$PROJ_DIR$\..\FT_TRMT_FW\RFM22B.c}.0.1" 0 0 0 0 "" 0 ""</Bp0>
+        <Bp1>_ "STD_CODE" "{$PROJ_DIR$\..\FT_TRMT_FW\RFM22B.c}.0.1" 0 0 0 0 "" 0 ""</Bp1>
+        <Count>2</Count>
+    </Breakpoints>
     <Aliases>
         <A0>_ "C:\Users\Balazs\Desktop\FT-TRSY\FT_TSCP_FW\main.c" "D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\main.c"</A0>
         <A1>_ "C:\Users\Balazs\Desktop\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_exti.c" "D:\STM8Workspace\FT-TRSY\FT_TSCP_FW\STM8L15x_StdPeriph_Driver\src\stm8l15x_exti.c"</A1>

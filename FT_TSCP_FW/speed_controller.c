@@ -47,6 +47,8 @@ void InitSpeedController(void)
   SpeedController.actual_pos = 0;
   SpeedController.position_error_whole_turn = 0;
   
+  position_error_correction = 1;
+  
   for (int i = 0; i < SPEED_CORRECTION_SIZE; i++)
   {
     speed_correction_characteristic[i] = (i + 1) * ((int)ENCODER_INCREMENT_PER_ROTATION / SPEED_CORRECTION_SIZE);
@@ -72,6 +74,33 @@ void SetSpeedRef(float speed_ref)
     return;
   
   float speed_ref_diff = speed_ref - SpeedController.controller_speed_ref;
+  
+  if (speed_ref < 0.0001)
+  {
+    SpeedController.motor_speed_1sec = 0;
+    SpeedController.motor_speed_1sec_filtered = 0;
+    SpeedController.motor_speed_whole_turn = 0;
+    SpeedController.controller_speed_ref = 0;
+    SpeedController.controller_speed_ref_with_offset = 0;
+    SpeedController.expected_pos = 0;
+    SpeedController.actual_pos = 0;
+    SpeedController.position_error_whole_turn = 0;
+    
+    speed_controller_whole_turn_cycle = 0;
+    last_encoder_whole_turn = GetEncoderValue();
+    
+    speed_error_integral = 0;    
+    position_error_correction = 1;
+    
+    increment_integral_offset = increment_integral_linearized;
+    
+    expected_base_position = 0;
+    expected_increment_ms = 0;
+    expected_increment_cycle = 0;
+    
+    SetPwm(0);
+    return;
+  }
   
   if (speed_ref_diff == 0)
     return;
